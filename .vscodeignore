@@ -1,0 +1,11 @@
+.vscode/**
+src/**
+esbuild.js
+tsconfig.json
+.gitignore
+**/*.map
+node_modules/**
+!node_modules/katex/dist/katex.min.css
+!node_modules/katex/dist/fonts/**
+!node_modules/highlight.js/styles/github.css
+!node_modules/highlight.js/styles/github-dark.css

@@ -1,0 +1,80 @@
+{
+  "name": "jupyter-md-live-preview",
+  "displayName": "Jupyter Markdown Live Preview",
+  "description": "Live-Vorschau der Markdown-Zellen in Jupyter Notebooks – während des Tippens, ohne Strg+Enter.",
+  "version": "0.1.0",
+  "publisher": "muell",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Notebooks",
+    "Other"
+  ],
+  "activationEvents": [
+    "onNotebook:*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jupyterMdPreview.open",
+        "title": "Markdown-Live-Vorschau öffnen",
+        "category": "Jupyter Markdown Live Preview",
+        "icon": "$(book)"
+      }
+    ],
+    "configuration": {
+      "title": "Jupyter Markdown Live Preview",
+      "properties": {
+        "jupyterMdPreview.followActiveNotebook": {
+          "type": "boolean",
+          "default": true,
+          "description": "Die Vorschau wechselt automatisch zum zuletzt aktiven Notebook."
+        },
+        "jupyterMdPreview.updateDelay": {
+          "type": "number",
+          "default": 250,
+          "minimum": 50,
+          "description": "Entprell-Verzögerung in Millisekunden, bevor die Vorschau aktualisiert wird."
+        }
+      }
+    },
+    "menus": {
+      "notebook/toolbar": [
+        {
+          "command": "jupyterMdPreview.open",
+          "group": "navigation",
+          "when": "notebookType == 'jupyter-notebook'"
+        }
+      ],
+      "notebook/title": [
+        {
+          "command": "jupyterMdPreview.open",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "highlight.js": "^11.12.0",
+    "katex": "^0.19.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-texmath": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.1",
+    "@types/node": "^20.12.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.26.0",
+    "esbuild": "^0.20.2",
+    "typescript": "^5.4.5"
+  }
+}
